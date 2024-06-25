@@ -85,8 +85,6 @@ python demos/run_vis.py \
 The command below will calculate the first frame SMPL mesh from our motion
 annotations (joint rotations and root trajectories), and visualize in 3D. 
 ``` bash
-# install some additional libraries for 3D mesh visualization
-pip install vedo trimesh
 
 python demos/run_vis.py \
   --anno_dir <ANNOTATIONS_DIR> \

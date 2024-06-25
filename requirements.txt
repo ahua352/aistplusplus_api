@@ -10,5 +10,4 @@ imageio
 imageio-ffmpeg
 gdown
 vedo
-trimesh
 chumpy
