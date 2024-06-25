@@ -3,6 +3,13 @@
 This repo contains starter code for using the AIST++ dataset. To download the
 dataset or explore details of this dataset, please go to our dataset [website](https://google.github.io/aistplusplus_dataset).
 
+## Environment setup
+Create and then activate conda environment
+``` bash
+conda create -n aist2 python=3.9 -y
+conda activate aist2
+```
+
 ## Installation
 The code has been tested on `python>=3.7`. You can install the dependencies and this repo by:
 ``` bash
@@ -85,6 +92,23 @@ python demos/run_vis.py \
   --anno_dir <ANNOTATIONS_DIR> \
   --smpl_dir <SMPL_DIR> \
   --video_name gWA_sFM_c01_d27_mWA2_ch21 \ 
+  --mode SMPLMesh
+```
+
+##### My example
+<div align="center">
+<img src="assets/data_directory_example.png" width="250px"/>
+<p>Data directory example</p>
+</div>
+
+Note: For video_name, you can use filenames from motions, but you need to replace cAll with something like c01
+
+Paste the following as one line into terminal:
+``` bash
+python demos/run_vis.py \
+  --anno_dir me/annotation_dir/ \
+  --smpl_dir me/smpl_dir/ \
+  --video_name gBR_sBM_c01_d04_mBR0_ch01 \ 
   --mode SMPLMesh
 ```
 
@@ -186,3 +210,4 @@ In practise, we run this step on a cluster, but are only able to provide the sin
 "lhand", "rhand",
 ]
 ```
+
