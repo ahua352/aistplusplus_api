@@ -98,16 +98,13 @@ def main(_):
         body_pose=torch.from_numpy(smpl_poses[:, 1:]).float(),
         transl=torch.from_numpy(smpl_trans).float(),
         scaling=torch.from_numpy(smpl_scaling.reshape(1, 1)).float(),
-        ).vertices.detach().numpy()[0]  # first frame
+        ).vertices.detach().numpy()
     faces = smpl.faces
-    mesh = trimesh.Trimesh(vertices, faces)
-    mesh.visual.face_colors = [200, 200, 250, 100]
-    
-    keypoints3d = AISTDataset.load_keypoint3d(
-        aist_dataset.keypoint3d_dir, seq_name, use_optim=True)
-    pts = vedo.Points(keypoints3d[0], r=20)  # first frame
 
-    vedo.show(mesh, pts, interactive=True)
+    for verts in vertices:
+        mesh = trimesh.Trimesh(verts, faces)
+        mesh.visual.face_colors = [200, 200, 250, 100]
+        vedo.show(mesh, interactive=False)
     exit()
 
   # Visualize.
