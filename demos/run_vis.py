@@ -88,8 +88,8 @@ def main(_):
     keypoints2d = keypoints2d.reshape(9, nframes, njoints, 2)[view_idx]
 
   elif FLAGS.mode == 'SMPLMesh':  # SMPL Mesh
-    import trimesh  # install by `pip install trimesh`
     import vedo  # install by `pip install vedo`
+    import time
     smpl_poses, smpl_scaling, smpl_trans = AISTDataset.load_motion(
         aist_dataset.motion_dir, seq_name)
     smpl = SMPL(model_path=FLAGS.smpl_dir, gender='MALE', batch_size=1)
@@ -101,10 +101,18 @@ def main(_):
         ).vertices.detach().numpy()
     faces = smpl.faces
 
+    plotter = vedo.Plotter(interactive=False)
+
     for verts in vertices:
-        mesh = trimesh.Trimesh(verts, faces)
-        mesh.visual.face_colors = [200, 200, 250, 100]
-        vedo.show(mesh, interactive=False)
+        plotter.clear() 
+
+        mesh = vedo.Mesh([verts, faces])
+        mesh.color([200, 200, 250])    
+        
+        plotter.add(mesh)
+        plotter.show(interactive=False)
+
+        time.sleep(0.01)
     exit()
 
   # Visualize.
